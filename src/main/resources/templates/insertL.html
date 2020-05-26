@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<meta charset="ISO-8859-1">
+<title>Ingresar Libro</title>
+</head>
+<body>
+	<h1 class="bg-dark">Ingresar Libro</h1>
+	<form th:action="@{/insertl}" th:object="${libro}" method="post">
+		<div class="form-group">
+			<div class="sec">
+				<label class="text">Titulo: </label>
+				<input type="text" th:field="*{sTitulo}" class="form-control"/>
+				<span class="text" th:errors="*{sTitulo}" style="color: #FF0000"></span><br>
+			</div>
+			<div class="sec">
+				<label class="text">Autor: </label>
+				<input type="text" th:field="*{sAutor}" class="form-control"/>
+				<span class="text" th:errors="*{sAutor}" style="color: #FF0000"></span><br>
+			</div>
+			<div class="sec">
+				<label class="text">ISBN: </label>
+				<input type="text" th:field="*{isbn}" class="form-control"/>
+				<span class="text" th:errors="*{isbn}" style="color: #FF0000"></span><br>
+			</div>
+			<div class="sec">
+				<label class="text">Categoria: </label>
+				<select class="custom-select" id="inputGroupSelect02" th:field="*{cat_categoria.cCategoria}">
+					<th:block th:each="categoria, row: ${categorias}">
+					<option th:value="${categoria.cCategoria}" th:text="${categoria.sCategoria}"></option>
+				</select>
+			</div>
+			<div class="sec">
+				<label class="text">Estado: </label>
+				<input type="checkbox" th:field="*{bEstado}" value="true"/>
+			</div>
+			<input class="btn btn-primary" type="submit" value="Guardar"/>
+		</div>
+	</form>
+</body>
+</html>
